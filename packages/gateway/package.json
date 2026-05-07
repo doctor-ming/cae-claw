@@ -1,0 +1,31 @@
+{
+  "name": "@cae-claw/gateway",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --build",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@cae-claw/core": "workspace:*",
+    "@cae-claw/agent": "workspace:*",
+    "@cae-claw/skills": "workspace:*",
+    "@cae-claw/tools": "workspace:*",
+    "express": "^5.0.0",
+    "cors": "^2.8.5",
+    "ws": "^8.18.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/cors": "^2.8.0",
+    "@types/ws": "^8.5.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0",
+    "tsx": "^4.19.0"
+  }
+}
