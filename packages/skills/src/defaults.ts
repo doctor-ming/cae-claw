@@ -17,7 +17,9 @@ export const SKILL_CATEGORIES = {
   post_processing: { name: '后处理', icon: '📊', color: '#06B6D4' },
   optimization: { name: '优化', icon: '🎯', color: '#F97316' },
   remote_command: { name: '远程命令', icon: '🖥️', color: '#10B981' },
-  workflow: { name: '工作流', icon: '🔄', color: '#8B5CF6' }
+  workflow: { name: '工作流', icon: '🔄', color: '#8B5CF6' },
+  sandbox: { name: '沙箱', icon: '🛡️', color: '#7C3AED' },
+  knowledge: { name: '知识库', icon: '📚', color: '#059669' }
 };
 
 export const DEFAULT_SKILLS: Partial<Skill>[] = [
@@ -188,6 +190,62 @@ export const DEFAULT_SKILLS: Partial<Skill>[] = [
     color: '#6B7280',
     author: 'CAE Claw',
     tags: ['command', 'shell', 'execute', 'local']
+  },
+  {
+    id: 'sandbox_execute',
+    name: 'Sandbox Execute',
+    name_zh: '沙箱执行',
+    description: 'Execute command in isolated sandbox environment',
+    description_zh: '在隔离的沙箱环境中执行命令',
+    atomic: true,
+    category: 'sandbox',
+    tool_category: 'system',
+    icon: '🛡️',
+    color: '#7C3AED',
+    author: 'CAE Claw',
+    tags: ['sandbox', 'execute', 'isolated', 'safe']
+  },
+  {
+    id: 'sandbox_create',
+    name: 'Sandbox Create',
+    name_zh: '创建沙箱',
+    description: 'Create a new sandbox environment',
+    description_zh: '创建新的沙箱环境',
+    atomic: true,
+    category: 'sandbox',
+    tool_category: 'system',
+    icon: '🛡️',
+    color: '#7C3AED',
+    author: 'CAE Claw',
+    tags: ['sandbox', 'create', 'environment']
+  },
+  {
+    id: 'kb_search',
+    name: 'Knowledge Search',
+    name_zh: '知识库搜索',
+    description: 'Search CAE knowledge base for relevant information',
+    description_zh: '搜索 CAE 知识库获取相关信息',
+    atomic: true,
+    category: 'knowledge',
+    tool_category: 'system',
+    icon: '📚',
+    color: '#059669',
+    author: 'CAE Claw',
+    tags: ['knowledge', 'search', 'cae', 'information']
+  },
+  {
+    id: 'kb_add_document',
+    name: 'Add Document',
+    name_zh: '添加文档',
+    description: 'Add document to knowledge base',
+    description_zh: '向知识库添加文档',
+    atomic: true,
+    category: 'knowledge',
+    tool_category: 'system',
+    icon: '📚',
+    color: '#059669',
+    author: 'CAE Claw',
+    tags: ['knowledge', 'add', 'document', 'upload']
   }
 ];
 

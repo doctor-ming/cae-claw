@@ -18,7 +18,9 @@ export const SkillCategorySchema = z.enum([
   'post_processing',
   'optimization',
   'remote_command',
-  'workflow'
+  'workflow',
+  'sandbox',
+  'knowledge'
 ]);
 export type SkillCategory = z.infer<typeof SkillCategorySchema>;
 
