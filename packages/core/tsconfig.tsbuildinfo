@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/knowledge.ts","./src/sandbox.ts","./src/skill.ts"],"version":"5.9.3"}
+{"root":["./src/hook.ts","./src/index.ts","./src/knowledge.ts","./src/sandbox.ts","./src/skill.ts"],"version":"5.9.3"}
