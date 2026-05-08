@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Express } from 'express';
 import cors from 'cors';
 import { WebSocketServer, WebSocket } from 'ws';
 import { createServer } from 'http';
@@ -6,7 +6,7 @@ import { CAEAgentEngine } from '@cae-claw/agent';
 import { SkillRegistry, initializeDefaultSkills } from '@cae-claw/skills';
 import type { ExecutionContext } from '@cae-claw/core';
 
-const app = express();
+const app: Express = express();
 const PORT = process.env.PORT || 8080;
 
 app.use(cors());
@@ -44,6 +44,11 @@ app.get('/api/skills', (req, res) => {
   res.json({ skills });
 });
 
+app.get('/api/skills/categories', (_req, res) => {
+  const byCategory = skillRegistry.get_by_category();
+  res.json({ categories: byCategory });
+});
+
 app.get('/api/skills/:id', (req, res) => {
   const skill = skillRegistry.get(req.params.id);
   if (!skill) {
@@ -75,11 +80,6 @@ app.post('/api/skills/:id/execute', async (req, res) => {
       error: error instanceof Error ? error.message : 'Execution failed' 
     });
   }
-});
-
-app.get('/api/skills/categories', (_req, res) => {
-  const categorized = skillRegistry.get_by_category();
-  res.json({ categories: categorized });
 });
 
 app.post('/api/chat', async (req, res) => {

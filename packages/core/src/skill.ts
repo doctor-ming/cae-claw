@@ -1,12 +1,24 @@
 import { z } from 'zod';
 
+export const ToolCategorySchema = z.enum([
+  'ansa',
+  'ssh',
+  'hyperworks',
+  'post_processing',
+  'workflow',
+  'system'
+]);
+export type ToolCategory = z.infer<typeof ToolCategorySchema>;
+
 export const SkillCategorySchema = z.enum([
   'data_io',
   'mesh',
   'boundary_conditions',
   'solver',
   'post_processing',
-  'optimization'
+  'optimization',
+  'remote_command',
+  'workflow'
 ]);
 export type SkillCategory = z.infer<typeof SkillCategorySchema>;
 
@@ -33,6 +45,7 @@ export const SkillSchema = z.object({
   
   atomic: z.boolean().default(true),
   category: SkillCategorySchema,
+  tool_category: ToolCategorySchema.optional(),
   
   icon: z.string().default('📦'),
   color: z.string().default('#3B82F6'),
@@ -127,20 +140,40 @@ export const CAESessionSchema = z.object({
 });
 export type CAESession = z.infer<typeof CAESessionSchema>;
 
-export const SkillExecutionLogSchema = z.object({
+export const SSHConnectionSchema = z.object({
   id: z.string(),
-  execution_id: z.string(),
-  skill_id: z.string(),
-  user_id: z.string().optional(),
-  
-  status: z.enum(['success', 'failed', 'partial']),
-  
-  input_params: z.record(z.any()),
-  output_result: z.record(z.any()).optional(),
-  error_message: z.string().optional(),
-  
-  execution_time_ms: z.number(),
-  
-  created_at: z.string()
+  name: z.string(),
+  host: z.string(),
+  port: z.number().default(22),
+  username: z.string(),
+  auth_type: z.enum(['password', 'key', 'agent']).default('password'),
+  password: z.string().optional(),
+  private_key_path: z.string().optional(),
+  passphrase: z.string().optional(),
+  proxy_enabled: z.boolean().default(false),
+  proxy_host: z.string().optional(),
+  proxy_port: z.number().optional(),
+  proxy_username: z.string().optional(),
+  proxy_password: z.string().optional(),
+  status: z.enum(['disconnected', 'connecting', 'connected', 'error']).default('disconnected'),
+  created_at: z.string(),
+  last_connected: z.string().optional()
 });
-export type SkillExecutionLog = z.infer<typeof SkillExecutionLogSchema>;
+export type SSHConnection = z.infer<typeof SSHConnectionSchema>;
+
+export const CommandToolSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  name_zh: z.string(),
+  description: z.string(),
+  command: z.string(),
+  category: z.enum(['file', 'process', 'system', 'network', 'custom']).default('custom'),
+  parameters: z.array(z.object({
+    name: z.string(),
+    type: z.string(),
+    required: z.boolean().default(false),
+    default: z.string().optional()
+  })).default([]),
+  timeout: z.number().default(30000)
+});
+export type CommandTool = z.infer<typeof CommandToolSchema>;
