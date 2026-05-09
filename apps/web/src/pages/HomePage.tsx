@@ -190,33 +190,20 @@ export function HomePage() {
         </nav>
 
         {/* Bottom Actions */}
-        <div className="px-3 py-4 border-t border-slate-100">
-          {!sidebarCollapsed && (
-            <div className="flex items-center gap-3 mb-3 px-4">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                <span className="text-sm text-slate-600">在线</span>
-              </div>
-            </div>
-          )}
-          <div className="flex items-center gap-2">
-            <button className="flex-1 flex items-center justify-center p-2.5 hover:bg-slate-100 rounded-xl transition-colors">
-              <Moon className="w-5 h-5 text-slate-500" />
-            </button>
-            <button className="flex-1 flex items-center justify-center p-2.5 hover:bg-slate-100 rounded-xl transition-colors">
-              <Settings className="w-5 h-5 text-slate-500" />
-            </button>
-            <button 
-              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className="flex-1 flex items-center justify-center p-2.5 hover:bg-slate-100 rounded-xl transition-colors"
-            >
-              {sidebarCollapsed ? (
-                <ChevronRight className="w-5 h-5 text-slate-500" />
-              ) : (
-                <ChevronLeft className="w-5 h-5 text-slate-500" />
-              )}
-            </button>
-          </div>
+        <div className="mt-auto px-3 py-4 border-t border-slate-100 flex items-center justify-center gap-2">
+          <button className="flex-1 flex items-center justify-center p-2.5 hover:bg-slate-100 rounded-xl transition-colors">
+            <Settings className="w-5 h-5 text-slate-500" />
+          </button>
+          <button 
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            className="flex-1 flex items-center justify-center p-2.5 hover:bg-slate-100 rounded-xl transition-colors"
+          >
+            {sidebarCollapsed ? (
+              <ChevronRight className="w-5 h-5 text-slate-500" />
+            ) : (
+              <ChevronLeft className="w-5 h-5 text-slate-500" />
+            )}
+          </button>
         </div>
       </aside>
 
