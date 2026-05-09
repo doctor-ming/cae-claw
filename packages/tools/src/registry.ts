@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { ScriptTool } from './script.js';
+import { CAEScriptTool } from './cae_script.js';
 
 export const ToolCategorySchema = z.enum([
   'ansa',
@@ -6,7 +8,9 @@ export const ToolCategorySchema = z.enum([
   'hyperworks',
   'post_processing',
   'workflow',
-  'system'
+  'system',
+  'script',
+  'coding'
 ]);
 export type ToolCategory = z.infer<typeof ToolCategorySchema>;
 
@@ -285,6 +289,8 @@ export function createToolRegistry(): ToolRegistry {
   registry.register('ansa', new ANSATool(), 'ansa');
   registry.register('ssh', new SSHTool(), 'ssh');
   registry.register('cmd', new CommandTool(), 'ssh');
+  registry.register('script', new ScriptTool(), 'coding');
+  registry.register('cae_script', new CAEScriptTool(), 'coding');
   
   return registry;
 }
